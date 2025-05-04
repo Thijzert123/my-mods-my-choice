@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "mymodsmychoice",
+	"version": "${version}",
+	"name": "My Mods, My Choice",
+	"description": "Enable and disable mods via an in-game configuration screen",
+	"authors": [
+		"Thijzert"
+	],
+	"contact": {
+		"homepage": "https://github.com/Thijzert123/my-mods-my-choice",
+		"sources": "https://github.com/Thijzert123/my-mods-my-choice"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/mymodsmychoice/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.thijzert123.mymodsmychoice.MyModsMyChoice"
+		],
+		"client": [
+			"io.github.thijzert123.mymodsmychoice.MyModsMyChoiceClient"
+		],
+		"modmenu": [
+        		"io.github.thijzert123.mymodsmychoice.config.ModMenuIntegration"
+    		]
+	},
+	"mixins": [
+		"mymodsmychoice.mixins.json",
+		{
+			"config": "mymodsmychoice.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.5",
+		"java": ">=21",
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": ">=3.6.6+1.21.5-fabric"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
