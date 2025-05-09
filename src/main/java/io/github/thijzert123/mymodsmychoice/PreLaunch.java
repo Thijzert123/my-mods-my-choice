@@ -16,9 +16,7 @@ public class PreLaunch implements SetupModCallback {
 
         fabricLoader = FabricLoader.getInstance();
 
-        DisabledModsLoader.loadDisabledMods();
-        final List<String> disabledMods = DisabledModsLoader.disabledMods;
-
+        final List<String> disabledMods = DisabledMods.load();
         fabricLoader.getAllMods().forEach((modContainer -> {
             final String modId = modContainer.getMetadata().getId();
             if (disabledMods.contains(modId)) {
