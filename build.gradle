@@ -17,12 +17,16 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven {
-        	name 'Xander Maven'
-        	url 'https://maven.isxander.dev/releases'
-    	}
+		name 'Xander Maven'
+		url 'https://maven.isxander.dev/releases'
+	}
 	maven {
 		name = 'Terraformers'
 		url = 'https://maven.terraformersmc.com'
+	}
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
 	}
 }
 
@@ -35,7 +39,6 @@ loom {
 			sourceSet sourceSets.client
 		}
 	}
-
 }
 
 dependencies {
@@ -49,6 +52,11 @@ dependencies {
 
 	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"	
 	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+	modImplementation "maven.modrinth:preloading-tricks:${project.preloading_tricks_version}"
+
+	include "maven.modrinth:preloading-tricks:${project.preloading_tricks_version}"
+	include "com.fasterxml.jackson.core:jackson-core:2.19.0"
+	include "com.fasterxml.jackson.core:jackson-databind:2.19.0"
 }
 
 processResources {

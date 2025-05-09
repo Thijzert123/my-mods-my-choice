@@ -11,7 +11,7 @@
 		"homepage": "https://github.com/Thijzert123/my-mods-my-choice",
 		"sources": "https://github.com/Thijzert123/my-mods-my-choice"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/mymodsmychoice/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -22,16 +22,12 @@
 			"io.github.thijzert123.mymodsmychoice.MyModsMyChoiceClient"
 		],
 		"modmenu": [
-        		"io.github.thijzert123.mymodsmychoice.config.ModMenuIntegration"
-    		]
+        		"io.github.thijzert123.mymodsmychoice.config.InGameConfig"
+		]
 	},
-	"mixins": [
-		"mymodsmychoice.mixins.json",
-		{
-			"config": "mymodsmychoice.client.mixins.json",
-			"environment": "client"
-		}
-	],
+	"languageAdapters": {
+		"dummy_language_adapter": "settingdust.preloadingtricks.DummyLanguageAdapter"
+	},
 	"depends": {
 		"fabricloader": ">=0.16.14",
 		"minecraft": "~1.21.5",
@@ -39,7 +35,9 @@
 		"fabric-api": "*",
 		"yet_another_config_lib_v3": ">=3.6.6+1.21.5-fabric"
 	},
-	"suggests": {
-		"another-mod": "*"
-	}
+	"jars": [
+		{"file": "jackson-core-2.19.0.jar"},
+		{"file": "jackson-databind-2.19.0.jar"},
+		{"file": "preloading-tricks-1.2.3.jar"}
+	]
 }
