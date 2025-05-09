@@ -57,6 +57,7 @@ dependencies {
 	include "maven.modrinth:preloading-tricks:${project.preloading_tricks_version}"
 	include "com.fasterxml.jackson.core:jackson-core:2.19.0"
 	include "com.fasterxml.jackson.core:jackson-databind:2.19.0"
+	include "com.fasterxml.jackson.core:jackson-annotations:2.19.0"
 }
 
 processResources {
