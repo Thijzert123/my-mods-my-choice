@@ -2,8 +2,6 @@ package io.github.thijzert123.mymodsmychoice;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
-import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import io.github.thijzert123.mymodsmychoice.config.BooleanController;
 import io.github.thijzert123.mymodsmychoice.config.Category;
 import io.github.thijzert123.mymodsmychoice.config.LabelController;
@@ -12,7 +10,6 @@ import net.fabricmc.api.ClientModInitializer;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +48,7 @@ public class MyModsMyChoiceClient implements ClientModInitializer {
         final File file = MyModsMyChoice.CONFIG_SCREEN_CONFIG_PATH.toFile();
         try {
             //objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, listtowrite);
-            final List<Category> categories = objectMapper.readValue(file, new TypeReference<List<Category>>(){});
+            final List<Category> categories = objectMapper.readValue(file, new TypeReference<>() {});
             MyModsMyChoice.LOGGER.info(categories.getFirst().controllers.getFirst().text);
         } catch (final IOException ioException){
             throw new RuntimeException(ioException);

@@ -89,7 +89,7 @@ public class InGameConfig implements ModMenuApi {
 
     private List<Category> deserializeConfigFile() throws IOException {
         return new ObjectMapper().readValue(MyModsMyChoice.CONFIG_SCREEN_CONFIG_PATH.toFile(),
-                new TypeReference<List<Category>>(){});
+                new TypeReference<>() {});
     }
 
     private YetAnotherConfigLib.Builder generateErrorConfigBuilder(final String message) {

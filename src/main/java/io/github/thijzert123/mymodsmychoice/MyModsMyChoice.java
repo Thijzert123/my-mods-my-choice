@@ -20,21 +20,13 @@ public class MyModsMyChoice implements ModInitializer {
 	public static final String DISABLED_MODS_SETS_CONFIG_FILENAME = "disabled_mods.txt";
 	public static final Path DISABLED_MODS_CONFIG_PATH = CONFIG_DIR.resolve(DISABLED_MODS_SETS_CONFIG_FILENAME);
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	// TODO remove
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
 		LOGGER.info("My Mods, My Choice!");
         try {
-            Files.createDirectories(CONFIG_DIR); // also creates CONFIG_DIR, as CATEGORIES_DIR is a subfolder
+            Files.createDirectories(CONFIG_DIR);
         } catch (final IOException ioException) {
             throw new RuntimeException("Couldn't create config directories.", ioException);
         }

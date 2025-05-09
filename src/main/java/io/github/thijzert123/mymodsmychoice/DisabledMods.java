@@ -36,7 +36,7 @@ public class DisabledMods {
         }
     }
 
-    private static void writeDefaultComments(final PrintWriter printWriter) throws IOException {
+    private static void writeDefaultComments(final PrintWriter printWriter) {
         printWriter.println("// Add all the disabled mods here");
         printWriter.println("// You have to use the mod id that is used internally");
         printWriter.println("// Lines like these, that start with // will be ignored");

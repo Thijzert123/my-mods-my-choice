@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CyclingController extends LabelController {
     @JsonProperty("mod_sets")
-    public List<String> modSetIds = new ArrayList<>();
+    public final List<String> modSetIds = new ArrayList<>();
 
     public CyclingController() {}
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControllerGroupController extends LabelController implements CollapsableController {
-    public List<LabelController> controllers = new ArrayList<>();
+    public final List<LabelController> controllers = new ArrayList<>();
 
     public ControllerGroupController(final String text, final String description) {
         super(text, description);

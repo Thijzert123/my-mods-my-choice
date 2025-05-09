@@ -20,7 +20,7 @@ public class PreLaunch implements SetupModCallback {
         fabricLoader.getAllMods().forEach((modContainer -> {
             final String modId = modContainer.getMetadata().getId();
             if (disabledMods.contains(modId)) {
-                MyModsMyChoice.LOGGER.info("Removing " + modId);
+                MyModsMyChoice.LOGGER.info("Removing {}", modId);
                 SERVICE.remove((ModContainerImpl) modContainer);
             }
         }));

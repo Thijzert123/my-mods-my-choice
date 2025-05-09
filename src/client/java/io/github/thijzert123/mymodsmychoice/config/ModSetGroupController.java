@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ModSetGroupController extends LabelController implements CollapsableController {
     @JsonProperty("mod_sets")
-    public List<String> modSetIds = new ArrayList<>();
+    public final List<String> modSetIds = new ArrayList<>();
 
     public ModSetGroupController() {}
 

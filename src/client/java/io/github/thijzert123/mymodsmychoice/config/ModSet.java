@@ -10,7 +10,7 @@ public class ModSet {
 
     // Mods that will be disabled at one when disabling this mod set.
     // These are the internally-used IDs, which may not be the same as their Modrinth ID.
-    public List<String> mods = new ArrayList<>();
+    public final List<String> mods = new ArrayList<>();
 
     public ModSet() {}
 
