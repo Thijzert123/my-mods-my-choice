@@ -41,4 +41,18 @@ public class DisabledMods {
         printWriter.println("// You have to use the mod id that is used internally");
         printWriter.println("// Lines like these, that start with // will be ignored");
     }
+
+    public static boolean isModSetEnabled(final String modSet) {
+        return !load().contains(modSet);
+    }
+
+    public static void setModSetEnabled(final String modSetId, final boolean modSetEnabled) {
+        final List<String> disabledMods = load();
+        if (!disabledMods.contains(modSetId) && !modSetEnabled) {
+            disabledMods.add(modSetId);
+        } else if (modSetEnabled) {
+            disabledMods.remove(modSetId);
+        }
+        save(disabledMods);
+    }
 }
