@@ -4,6 +4,10 @@ pluginManagement {
 			name = "Fabric"
 			url = "https://maven.fabricmc.net/"
 		}
+		maven {
+			name = "bai.lol"
+			url = "https://maven2.bai.lol"
+		}
 		mavenCentral()
 		gradlePluginPortal()
 	}

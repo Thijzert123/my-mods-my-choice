@@ -1,6 +1,7 @@
 plugins {
 	id "fabric-loom" version "1.10-SNAPSHOT"
 	id "maven-publish"
+	id "lol.bai.explosion" version "0.1.0"
 }
 
 version = project.mod_version
@@ -52,9 +53,10 @@ dependencies {
 
 	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"	
 	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
-	modImplementation "maven.modrinth:preloading-tricks:${project.preloading_tricks_version}"
 
+	modImplementation explosion.fabric("maven.modrinth:preloading-tricks:${project.preloading_tricks_version}")
 	include "maven.modrinth:preloading-tricks:${project.preloading_tricks_version}"
+
 	include "com.fasterxml.jackson.core:jackson-core:2.19.0"
 	include "com.fasterxml.jackson.core:jackson-databind:2.19.0"
 	include "com.fasterxml.jackson.core:jackson-annotations:2.19.0"
