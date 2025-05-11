@@ -6,7 +6,6 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
-import io.github.thijzert123.mymodsmychoice.DisabledMods;
 import io.github.thijzert123.mymodsmychoice.MyModsMyChoice;
 import net.minecraft.text.Text;
 
@@ -83,11 +82,11 @@ public class InGameConfig implements ModMenuApi {
                 .description(OptionDescription.of(Text.of(booleanController.description)))
                 .controller(opt -> BooleanControllerBuilder.create(opt)
                         .coloured(true))
-                .binding(
-                        true,
-                        () -> DisabledMods.isModSetEnabled(booleanController.modSetId),
-                        (newVal) -> DisabledMods.setModSetEnabled(booleanController.modSetId, newVal)
-                )
+//                .binding(
+//                        true,
+//                        () -> DisabledMods.isModSetEnabled(booleanController.modSetId),
+//                        (newVal) -> DisabledMods.setModSetEnabled(booleanController.modSetId, newVal)
+//                )
                 .build();
     }
 
