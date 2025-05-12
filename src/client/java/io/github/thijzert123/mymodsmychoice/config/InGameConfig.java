@@ -1,12 +1,12 @@
 package io.github.thijzert123.mymodsmychoice.config;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import io.github.thijzert123.mymodsmychoice.MyModsMyChoice;
+import io.github.thijzert123.mymodsmychoice.config.manager.ConfigScreen;
+import io.github.thijzert123.mymodsmychoice.config.manager.DisabledModSets;
 import net.minecraft.text.Text;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class InGameConfig implements ModMenuApi {
 
     private List<ConfigCategory> loadConfigCategories() throws IOException {
         final List<ConfigCategory> configCategories = new ArrayList<>();
-        final List<Category> modSetCategories = deserializeConfigFile();
+        final List<Category> modSetCategories = ConfigScreen.load();
 
         for (final Category modSetCategory : modSetCategories) {
             final ConfigCategory.Builder categoryBuilderToAdd = ConfigCategory.createBuilder()
@@ -82,17 +82,12 @@ public class InGameConfig implements ModMenuApi {
                 .description(OptionDescription.of(Text.of(booleanController.description)))
                 .controller(opt -> BooleanControllerBuilder.create(opt)
                         .coloured(true))
-//                .binding(
-//                        true,
-//                        () -> DisabledMods.isModSetEnabled(booleanController.modSetId),
-//                        (newVal) -> DisabledMods.setModSetEnabled(booleanController.modSetId, newVal)
-//                )
+                .binding(
+                        true,
+                        () -> !DisabledModSets.isModSetDisabled(booleanController.modSetId),
+                        (newVal) -> DisabledModSets.setModSetDisabled(booleanController.modSetId, !newVal)
+                )
                 .build();
-    }
-
-    private List<Category> deserializeConfigFile() throws IOException {
-        return new ObjectMapper().readValue(MyModsMyChoice.CONFIG_SCREEN_CONFIG_PATH.toFile(),
-                new TypeReference<>() {});
     }
 
     private YetAnotherConfigLib.Builder generateErrorConfigBuilder(final String message) {
