@@ -16,19 +16,23 @@ import java.util.Map;
 
 public class ModSets {
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final Map<String, ModSet> modSets = load();
 
     // Converts mod sets to individual mods.
     // If a mod set for example had sodium and indium, it would add both to the returned List<String>.
-    public static List<String> modSetsToMods(final List<String> modSetsToConvert) {
-        final Map<String, ModSet> allModSets = load();
+    public static List<String> modSetIdsToMods(final List<String> modSetsToConvert) {
         final List<String> mods = new ArrayList<>();
         for (final String modSetToConvert : modSetsToConvert) {
-            mods.addAll(allModSets.get(modSetToConvert).mods);
+            mods.addAll(modSets.get(modSetToConvert).mods);
         }
         return mods;
     }
 
-    public static Map<String, ModSet> load() {
+    public static Map<String, ModSet> get() {
+        return modSets;
+    }
+
+    private static Map<String, ModSet> load() {
         final File configFile = MyModsMyChoice.DISABLED_MOD_SETS_CONFIG_PATH.toFile();
         try {
             return objectMapper.readValue(configFile, new TypeReference<>() {});

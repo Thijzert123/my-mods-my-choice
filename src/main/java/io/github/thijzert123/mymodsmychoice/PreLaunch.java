@@ -15,7 +15,7 @@ public class PreLaunch implements SetupModCallback {
     public PreLaunch() {
         MyModsMyChoice.LOGGER.info("I'm here before the rest!");
 
-        final List<String> modsToDisable = ModSets.modSetsToMods(DisabledModSets.load());
+        final List<String> modsToDisable = ModSets.modSetIdsToMods(DisabledModSets.get());
         FabricLoader.getInstance().getAllMods().forEach((modContainer -> {
             final String modId = modContainer.getMetadata().getId();
             if (modsToDisable.contains(modId)) {

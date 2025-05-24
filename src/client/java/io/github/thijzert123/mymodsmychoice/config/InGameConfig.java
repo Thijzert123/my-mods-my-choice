@@ -7,6 +7,7 @@ import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import io.github.thijzert123.mymodsmychoice.MyModsMyChoice;
 import io.github.thijzert123.mymodsmychoice.config.manager.ConfigScreen;
 import io.github.thijzert123.mymodsmychoice.config.manager.DisabledModSets;
+import io.github.thijzert123.mymodsmychoice.config.manager.ModSets;
 import net.minecraft.text.Text;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class InGameConfig implements ModMenuApi {
 
     private List<ConfigCategory> loadConfigCategories() throws IOException {
         final List<ConfigCategory> configCategories = new ArrayList<>();
-        final List<Category> modSetCategories = ConfigScreen.load();
+        final List<Category> modSetCategories = ConfigScreen.get();
 
         for (final Category modSetCategory : modSetCategories) {
             final ConfigCategory.Builder categoryBuilderToAdd = ConfigCategory.createBuilder()
@@ -83,7 +84,7 @@ public class InGameConfig implements ModMenuApi {
                 .controller(opt -> BooleanControllerBuilder.create(opt)
                         .coloured(true))
                 .binding(
-                        true,
+                        booleanController.defaultValue,
                         () -> !DisabledModSets.isModSetDisabled(booleanController.modSetId),
                         (newVal) -> DisabledModSets.setModSetDisabled(booleanController.modSetId, !newVal)
                 )

@@ -6,10 +6,8 @@ public class BooleanController extends LabelController {
     @JsonProperty("mod_set")
     public String modSetId;
 
-    public BooleanController() {}
+    @JsonProperty("default_value")
+    public boolean defaultValue;
 
-    public BooleanController(final String text, final String description, final String modSetId) {
-        super(text, description);
-        this.modSetId = modSetId;
-    }
+    public BooleanController() {}
 }

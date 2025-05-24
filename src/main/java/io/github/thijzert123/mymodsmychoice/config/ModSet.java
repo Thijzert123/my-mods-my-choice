@@ -13,14 +13,4 @@ public class ModSet {
     public final List<String> mods = new ArrayList<>();
 
     public ModSet() {}
-
-    public ModSet(final String name, final String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public ModSet addMod(final String modId) {
-        mods.add(modId);
-        return this;
-    }
 }

@@ -12,8 +12,13 @@ import java.util.List;
 
 public class ConfigScreen {
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final List<Category> configScreen = load();
 
-    public static List<Category> load() {
+    public static List<Category> get() {
+        return configScreen;
+    }
+
+    private static List<Category> load() {
         final File configFile = MyModsMyChoice.CONFIG_SCREEN_CONFIG_PATH.toFile();
         try {
             return objectMapper.readValue(configFile, new TypeReference<>() {});

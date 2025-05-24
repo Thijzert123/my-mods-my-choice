@@ -29,7 +29,11 @@ public class DisabledModSets {
         save(disabledModSets);
     }
 
-    public static List<String> load() {
+    public static List<String> get() {
+        return disabledModSets;
+    }
+
+    private static List<String> load() {
         try {
             return objectMapper.readValue(configFile, new TypeReference<>() {});
         } catch (final IOException ioException) {
