@@ -14,13 +14,13 @@ import java.util.List;
 public class DisabledModSets {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final File configFile = MyModsMyChoice.DISABLED_MOD_SETS_CONFIG_PATH.toFile();
+    private static final List<String> disabledModSets = load();
 
     public static boolean isModSetDisabled(final String modSetId) {
-        return load().contains(modSetId);
+        return disabledModSets.contains(modSetId);
     }
 
     public static void setModSetDisabled(final String modSetId, final boolean disabled) {
-        final List<String> disabledModSets = load();
         if (!disabledModSets.contains(modSetId) && disabled) {
             disabledModSets.add(modSetId);
         } else if (!disabled) {
