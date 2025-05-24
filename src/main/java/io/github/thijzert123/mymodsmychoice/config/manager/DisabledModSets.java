@@ -13,6 +13,7 @@ import java.util.List;
 
 public class DisabledModSets {
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final File configFile = MyModsMyChoice.DISABLED_MOD_SETS_CONFIG_PATH.toFile();
 
     public static boolean isModSetDisabled(final String modSetId) {
         return load().contains(modSetId);
@@ -29,10 +30,9 @@ public class DisabledModSets {
     }
 
     public static List<String> load() {
-        final File configFile = MyModsMyChoice.DISABLED_MOD_SETS_CONFIG_PATH.toFile();
         try {
             return objectMapper.readValue(configFile, new TypeReference<>() {});
-        } catch (final IOException ioException1) {
+        } catch (final IOException ioException) {
             MyModsMyChoice.LOGGER.error("Can't read disabled mod sets config file, creating empty file");
             final List<String> emptyList = new ArrayList<>();
             save(emptyList);
@@ -42,11 +42,9 @@ public class DisabledModSets {
 
     // Overwrites everything
     private static void save(final List<String> disabledMods) {
-        try (final PrintWriter printWriter = new PrintWriter(MyModsMyChoice.DISABLED_MOD_SETS_CONFIG_PATH.toFile())) {
-            for (final String disabledMod : disabledMods) {
-                printWriter.println(disabledMod);
-            }
-        } catch (final FileNotFoundException fileNotFoundException) {
+        try {
+            objectMapper.writeValue(configFile, disabledMods);
+        } catch (final IOException ioException) {
             MyModsMyChoice.LOGGER.error("Can't write to disabled mods config file.");
         }
     }
